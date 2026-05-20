@@ -1,0 +1,3 @@
+display_name: AI Agent Research Automation
+short_description: Designs auditable multi-agent workflows for scientific discovery.
+default_prompt: Help me build a literature-grounded, testable AI-agent research workflow with hypothesis generation, novelty checking, experiment planning, analysis, review, and iterative refinement.
