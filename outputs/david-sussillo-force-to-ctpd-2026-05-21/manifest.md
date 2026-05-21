@@ -33,3 +33,8 @@ set PYTHONIOENCODING=utf-8
 .venv\Scripts\python.exe artifacts\build_html.py
 .venv\Scripts\python.exe artifacts\build_pptx.py
 ```
+
+## 線上簡報網址（GitHub Pages）
+- 互動簡報 deck.html：https://ckt520728.github.io/2026Cordex/outputs/david-sussillo-force-to-ctpd-2026-05-21/artifacts/deck.html
+- PPTX 下載：https://ckt520728.github.io/2026Cordex/outputs/david-sussillo-force-to-ctpd-2026-05-21/artifacts/deck.pptx
+- 備援（raw.githack）：https://raw.githack.com/ckt520728/2026Cordex/master/outputs/david-sussillo-force-to-ctpd-2026-05-21/artifacts/deck.html
