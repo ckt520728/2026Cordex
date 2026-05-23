@@ -38,12 +38,18 @@ backup_repo: 2026Cordex
    - 根因：`ode.tsx` 只 `export default App`，直接當 Vite 入口打包會產生偏小 bundle，沒有真正 mount React App。
    - 修復：建立臨時入口 `standalone-entry.tsx`，用 `createRoot(...).render(<App />)` 正確掛載後再 inline 成單一 HTML。
 
+5. 原版深色版面回復
+   - 根因：`standalone-entry.tsx` 起初沒有 import `src/index.css`，導致 Tailwind utilities 沒被打包，畫面退回白底。
+   - 修復：在 entrypoint 補回 `import './src/index.css';`，保留原本 slate/indigo/cyan 深色設計，只修 build chain。
+
 ## 驗證
 
 - Vite production build：成功，完整 bundle 約 244 KB。
+- Tailwind CSS：成功打包進 standalone，CSS 約 31.8 KB。
 - Playwright file preview：成功。
 - Chaos 分頁：可點入，無 runtime error。
 - Podcast panel：可開啟，Play button 可觸發播放流程，無 console/page error。
+- 視覺回歸：`body` 與 app 背景為 `rgb(2, 6, 23)`，不是白底。
 
 注意：自動化測試只能驗證播放流程與 Web Speech API 呼叫路徑；實際是否有聲音仍取決於瀏覽器音訊權限、Windows 音量輸出，以及系統是否安裝中文語音 voice。
 
@@ -51,6 +57,7 @@ backup_repo: 2026Cordex
 
 - `file://` 頁面若引用外部 Vite bundle，容易因路徑或 CORS 導致空白；最後改成單一 HTML。
 - `ode.tsx` 不是完整 entrypoint，只 export App，不能直接當可執行頁面。
+- standalone entrypoint 若沒有 import `src/index.css`，Vite 不會輸出 Tailwind CSS，頁面會變白底。
 - PowerShell 預設編碼會讓中文 selector/status 在腳本中變亂碼；後續狀態字串改用 ASCII，驗證 selector 避免依賴中文。
 - Web Speech API 的播放必須盡量發生在使用者手勢內；生成完成後自動播放不可靠。
 - Chaos bug 是 lazy branch bug：平常不會爆，只有點到該 tab 才會觸發。
@@ -61,4 +68,5 @@ backup_repo: 2026Cordex
 - `index.html`：可直接發佈的 standalone 網頁。
 - `conversation-summary.md`：本次對話脈絡與決策摘要。
 - `current-podcast-chaos.png`：本輪驗證截圖。
+- `restored-dark-theme.png`：深色版面回歸驗證截圖。
 - `manifest.md`：本紀錄。

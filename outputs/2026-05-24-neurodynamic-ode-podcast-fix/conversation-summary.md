@@ -15,6 +15,7 @@
 - 合成完成後自動播放不可靠，因為瀏覽器常要求語音或音訊播放必須發生在使用者 click gesture 內。
 - Chaos crash 是 component scope bug：Chaos branch 使用了 `SimulatorTab` 才有的 `runTime`。
 - 舊版反覆出現的原因之一，是 standalone build 沒有正確 mount `App`，導致 bundle 很小但頁面不是最新可執行版本。
+- 白底問題是 CSS build chain 漏接，不是設計需求變更；補回 `src/index.css` 後即可恢復原始深色系。
 
 ## 最後處理方式
 
@@ -22,6 +23,7 @@
 - Play/Pause 改為 deterministic：pause 會 cancel speech queue，避免殘留語音。
 - Chaos 動畫改用 local `angle` 計算 pulse index。
 - 補上 `standalone-entry.tsx`，確保 Vite build 會 render `<App />`。
+- 在 `standalone-entry.tsx` 補回 `import './src/index.css';`，確保 Tailwind utilities 被打包進單一 HTML。
 - 發佈到 GitHub Pages 的 `2026Cordex` 路徑，並將同份紀錄備份到 Obsidian。
 
 ## 接手注意
