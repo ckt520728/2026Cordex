@@ -59,5 +59,6 @@ backup_repo: 2026Cordex
 ## 主要檔案
 
 - `index.html`：可直接發佈的 standalone 網頁。
+- `conversation-summary.md`：本次對話脈絡與決策摘要。
 - `current-podcast-chaos.png`：本輪驗證截圖。
 - `manifest.md`：本紀錄。
