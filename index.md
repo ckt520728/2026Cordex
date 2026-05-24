@@ -44,3 +44,5 @@ updated: '2026-05-19'
 - [[Codex 懶人包/2026-05-19 Codex App NotebookLM MCP 連線經驗|2026-05-19 Codex App NotebookLM MCP 連線經驗]] - Codex App 串接 NotebookLM MCP、Kwota Daily Stack 修正與踩坑紀錄。
 
 - [2026-05-24 Neurodynamic ODE Podcast 與 Chaos 修復紀錄](outputs/2026-05-24-neurodynamic-ode-podcast-fix/manifest.md) - standalone 網頁、Podcast Web Speech 修復、Chaos 分頁修復與踩坑整理。
+
+- [2026-05-25 Neurodynamic ODE Learning Cabin Skill](outputs/2026-05-25-neurodynamic-ode-learning-cabin-skill/manifest.md) - reusable Codex skill for interactive differential-equation learning cabins.
