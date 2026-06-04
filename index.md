@@ -46,3 +46,9 @@ updated: '2026-05-19'
 - [2026-05-24 Neurodynamic ODE Podcast 與 Chaos 修復紀錄](outputs/2026-05-24-neurodynamic-ode-podcast-fix/manifest.md) - standalone 網頁、Podcast Web Speech 修復、Chaos 分頁修復與踩坑整理。
 
 - [2026-05-25 Neurodynamic ODE Learning Cabin Skill](outputs/2026-05-25-neurodynamic-ode-learning-cabin-skill/manifest.md) - reusable Codex skill for interactive differential-equation learning cabins.
+
+## 2026-06-04 Hermes Blog / Codex RCA
+
+- [Hermes Agent Blog author hallucination RCA](outputs/2026-06-04-hermes-blog-rca/2026-06-04-codex-hallucination-rca.md) - 部落格改寫、PDF 插圖、作者 metadata 幻覺與修正流程。
+- [personal-site-blog-publisher skill](skills/personal-site-blog-publisher/SKILL.md) - 本地 DOCX/PDF/HTML slides 轉個人網站 Blog 的可重用流程。
+- [memory update note](docs/memory-updates/2026-06-04-memory-update-blog-author-hallucination.md) - 供 Codex memory 吸收的錯誤與規則更新。
