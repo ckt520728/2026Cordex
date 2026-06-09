@@ -1,0 +1,4 @@
+﻿interface:
+  display_name: "Peer Review Cross Reference"
+  short_description: "Cross-reference a manuscript against a personal literature library and produce reviewer comments."
+  default_prompt: "Use this manuscript and my literature library to produce a peer-review cross-reference report with controversies, mechanistic synthesis, and Major/Minor comments."
