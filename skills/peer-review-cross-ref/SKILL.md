@@ -1,150 +1,120 @@
 ---
-name: peer-review-cross-ref
-description: Use when reviewing a manuscript, grant, thesis, or paper by cross-referencing its claims against the user's local literature library, lecture/PhD/reference notes, or prior curated bibliographies. Trigger for requests like "用我的文獻庫審這份稿件", "peer review cross-reference", "整理文獻支持審稿意見", "把稿件跟 E 槽 PDF 比對", "review this manuscript using my library", or when Codex must turn a scattered personal PDF library into Major/Minor reviewer comments, controversy maps, mechanistic synthesis, Analysis_Report.md, INDEX.md, and key finding notes.
+name: frontiers-paper-review
+description: "Advanced peer-review workflow for academic manuscripts submitted to Frontiers in Aging Neuroscience. Guides the agent to execute folder structure setups, bidirectional trajectory mapping (physiological aging vs. pathological AD), 1/f aperiodic component E/I modeling (Chu 2023 vs. Kopcanova 2024, Donoghue 2024 systematic review), ML/DL pipeline taxonomy, ERP handling, and systematic reference audits using a pair-programming loop (Implementation Plan + Walkthrough)."
+version: 2.0.0
+author: Antigravity & User
+license: MIT
+platforms: [windows, macos, linux]
 ---
 
-# Peer Review Cross Reference
+# Frontiers Review Paper Skill (peer-review-cross-ref v2)
 
-## 成功標準
+Structured workflow for peer-reviewing academic manuscripts submitted to *Frontiers in Aging Neuroscience* using a local literature library and the Antigravity pair-programming loop.
 
-完成時要能驗證下列產物存在且內容可追溯:
+## 1. Folder & System Structure
 
-1. `Analysis_Report.md`: 稿件核心 claims、文獻支持度、爭議點、mechanistic synthesis、可寫入審稿信的 Major/Minor comments。
-2. `INDEX.md`: 依稿件指標或論點分類的文獻清單,標示最值得引用者。
-3. `NN_<topic>_<name>/`: 已歸檔的 PDF 或來源文件,必要時附 `README_gap_note.md`。
-4. `★KEY_*.md`: 對每個重大爭議、方向性反轉、或個人引用映射建立獨立專文。
-5. 報告開頭有版本記錄,每輪新增發現以 patch/append 方式保留,不要整篇重寫。
+To execute this skill, set up the following environment:
+- **Literature Folder**: `E:\Frontiers_Aging_Neuroscience_Review_Lit\`
+  - Contains categorized PDF papers (e.g., `01_Peak_Alpha_Frequency_PAF_IAPF`, `02_Spectral_Power_Distribution`, `03_Aperiodic_1f_Component`, etc.).
+  - Contains `Analysis_Report.md` (cross-referencing local literature and manuscript claims) and `INDEX.md`.
+- **Working Review Folder**: `D:\Frontiers in Aging Neuroscience Paper review\`
+  - Contains the target manuscript (`1878469_Manuscript.PDF`), the draft comments (`Reviewer_Comments_2026-06-10.md`), and the compilation script (`build_docx_v2.py`).
+  - Compiled output should be stored as `Reviewer_Comments_2026-06-17.docx` (or matching the current review date).
 
-## 工作流程
+---
 
-### Step 0: 先找個人引用資產
+## 2. Antigravity Pair-Programming Loop
 
-在掃大量 PDF 前,先問或主動搜尋使用者是否有已整理過的:
+To ensure precision and quality, the review must follow this loop before making any final changes to the reviewer report:
 
-- PhD viva / lecture slides / grant / prior manuscript reference list
-- Obsidian/Second Brain 筆記
-- Zotero/EndNote/BibTeX 匯出
-- 既有 literature review 草稿或 analysis report
-
-這些是 first-class context source,通常比從零掃 PDF 更能產生 L4/L5 級審稿價值。
-
-### Step 1: 萃取稿件 claims
-
-先讀稿件、deep analysis、review comments、或摘要,萃取 3-8 個核心 claims/indices。
-
-每個 claim 至少記錄:
-
-- 稿件原始說法
-- 對應章節或頁碼
-- claim type: directionality / mechanism / method / clinical translation / limitation
-- 需要驗證的方向:支持、一致但過度簡化、相反、爭議、缺 citation
-
-若稿件很長,先產出 claim map,不要直接開始全文文獻整理。
-
-### Step 2: 先掃資料夾,再讀內容
-
-大型本機文獻庫不要先全文 grep PDF。先用資料夾與檔名建立候選清單:
-
-```powershell
-Get-ChildItem -LiteralPath <library_root> -Directory -Recurse -Depth 3 |
-  Where-Object { $_.Name -match "<topic keywords>" } |
-  Select-Object FullName
+```mermaid
+graph TD
+    A[Manuscript & Library Intake] --> B[Generate Implementation Plan]
+    B --> C{User Review & Fine-Tuning}
+    C -- Feedback on Diffs/Plan --> B
+    C -- Proceed / Approve --> D[Execute MD Changes]
+    D --> E[Compile MD to Word Document]
+    E --> F[Generate Walkthrough Report]
+    F --> G[Deliver Final Output]
 ```
 
-把二級/三級候選資料夾列給使用者確認哪些值得深入。使用者指出漏掉的資料夾時,把它當成新的高優先 context。
+1. **Implementation Plan (`implementation_plan.md`)**:
+   - Outline the proposed changes, major/minor comments, and citations.
+   - List any open questions or design dilemmas for the user to review.
+   - **Gating**: Stop and wait for the user's explicit approval before proceeding.
+2. **Execution & Compilation**:
+   - Perform precise file edits in Markdown.
+   - Run the python script (`build_docx_v2.py`) to compile the Markdown file into a Word Document.
+3. **Walkthrough (`walkthrough.md`)**:
+   - Provide a detailed summary of all adjustments, verification results, and paths of the compiled outputs.
+   - Highlight how diff comments from the user were integrated.
 
-### Step 3: 建立分類資料夾與索引
+---
 
-依稿件 claims 建立穩定命名:
+## 3. Scientific Review Guidelines
 
-```text
-01_<Claim_or_Index_Name>/
-02_<Claim_or_Index_Name>/
-03_<Claim_or_Index_Name>/
-...
-```
+### 3.1. Delta/Theta Trajectories: Normal Aging vs. AD Slowing
+Conflating physiological and pathological aging trajectories is a major error in aging neuroscience reviews. Ground the Major Comments in this distinction:
+- **Healthy Physiological Aging**: 
+  - absolute delta and theta power **do not increase** (they stay flat or decrease).
+  - The dominant posterior rhythm remains in the **alpha range** (though peak alpha frequency PAF slows).
+  - *Voytek et al. (2015)* shows that in healthy aging, slow wave power (delta/theta) decrements while fast wave power (beta) increments.
+- **Pathological Aging (MCI/AD Continuum)**:
+  - absolute delta and theta power **significantly and progressively increase** ("EEG slowing").
+  - The dominant rhythm shifts out of the alpha range entirely into the theta or delta range.
+- **Mechanistic Cascade**:
+  - Cholinergic basal forebrain degeneration (partially reversed/stabilized by AChEIs/memantine; e.g., Babiloni et al., 2013) $\rightarrow$ neuronal E/I imbalance (Maestu et al., 2021) $\rightarrow$ cortical network disruption and hypersynchronization (Lopez et al., 2014) $\rightarrow$ slow wave (delta/theta) power increase (Babiloni et al., 2021).
+- **Brain-Age Model Impact**: Models must be sensitive to the *direction* of absolute delta/theta changes to avoid misclassifying healthy older adults as pathological or vice versa.
 
-每個資料夾保存:
+### 3.2. Aperiodic (1/f) Exponent Controversy in AD
+- **Terminology**: 
+  - **Steeper Slope** = more negative log-log slope (e.g., $-1.0 \rightarrow -1.5$) = **increased exponent (exponent ↑)**.
+  - **Flatter Slope** = less negative log-log slope (e.g., $-1.5 \rightarrow -1.0$) = **decreased exponent (exponent ↓)**.
+- **Three AD Stances**:
+  1. *Stance A (Steeper / Exponent ↑)*: Represented by **Chu et al. (2023, *Frontiers in Aging Neuroscience*, fnagi-15-1195424)**. Shows exponent increases from CN (~1.0) to severe AD (~1.5) under strict age-correction (ANCOVA). Represents compensatory **inhibitory dominance** (Gao et al., 2017) or network hyperexcitability downregulation (Stam, 2023; Maestu et al., 2021).
+  2. *Stance B (Flatter / Exponent ↓)*: Consistent with the accelerated aging hypothesis (Voytek et al., 2015; Finley et al., 2023). Exponent decrease over 10 years predicts cognitive decline.
+  3. *Stance C (No difference)*: Represented by **Kopcanova et al. (2024, *Neurobiology of Disease*)**. Argues AD electrophysiological changes are purely periodic (oscillatory) once modeled.
+- **Donoghue (2024) Systematic Review**:
+  - Detailed citation: *Donoghue et al. (2024, A systematic review of aperiodic neural activity in clinical investigations)*.
+  - Clinical statistics: Analyzed 143 papers (35 diseases). Exponent changes: 35% increase (steeper), 31% decrease (flatter), 30% no difference.
+  - **Alzheimer's specific (9 reports)**: classified as **inconsistent (8 reporting increase/steeper, 3 reporting decrease/flatter, with region-specific differences)**.
+  - Discrepancies arise from:
+    1. *FOOOF/specparam settings*: only 56% report fitting details, 30% report $R^2$.
+    2. *Frequency fitting ranges*: ranges vary (1–43 Hz vs. 3–30 Hz), altering the estimated exponent.
+    3. *Cohort severity*: inclusion of severe cases (Chu et al. 2023) vs. mild-to-moderate (Kopcanova et al. 2024).
+    4. *Age correction strategies*: age matching vs. treating age as a covariate vs. ANCOVA.
 
-- 相關 PDF 或來源文件
-- 必要的 gap note
-- 重大爭議或鑑別點的 `★KEY_*.md`
+### 3.3. Machine Learning Framework Taxonomy
+In Section 3.2 (Machine Learning Frameworks), enforce a strict distinction between:
+- **Traditional Machine Learning (Manual Feature Engineering + ML)**: Al Zoubi et al. (2018), James & Burgess (2025). Features (PSD, complexity) are manually extracted and fed into ML algorithms.
+- **End-to-End Deep Learning (Raw EEG to CNN/RNN)**: Jusseaume & Valova (2022), Khayretdinova et al. (2022). Raw signals are directly mapped to age, operating as a "black box."
+- **Study Protocols vs. Completed Studies**: Ensure study proposals/protocols (like **Hembara & Vakorin, 2023**) are *never* mixed with completed empirical studies. Ensure Hembara & Vakorin (2023)'s citation is checked, as it merely reviews/cites Al Zoubi (2018)'s results (MAE 6.9, $R^2 = 0.37$) and does not present new empirical results.
 
-檔案複製時一律從 `Get-ChildItem` 取真實 `FullName`,避免手寫特殊字元路徑:
+### 3.4. ERP Component Rework
+- Because resting-state brain-age prediction pipelines rely strictly on resting spectral and complexity indices, they do not incorporate Event-Related Potentials (ERPs).
+- Condense long cataloging of ERPs (like N100, N170, P300) or move them to a separate discussion, explicitly explaining that task-based cognitive markers of aging are distinct from resting-state brain-age indices.
 
-```powershell
-Get-ChildItem -LiteralPath <folder> -File |
-  Where-Object { $_.Name -match "<pattern>" } |
-  ForEach-Object { Copy-Item -LiteralPath $_.FullName -Destination <dest> }
-```
+### 3.5. Reference Audit Checklist
+Verify that the manuscript's bibliography does not contain errors:
+- **Attribution**: Ref 29 should be Gemein, L. et al. (2024).
+- **Non-existent papers**: Ref 50 does not exist and should be removed.
+- **Cross-references**: Ref 73 is a duplicate of Ref 61 (Kounios et al., 2024). Ref 74 should cite Banville et al. (2024) instead of a commercial blog.
+- **Journals**: Ref 86 is published in the *Journal of Neuroscience* (not *eLife*).
+- **Inconsistent Formatting**: Correct capitalization inconsistency in Ref 33 (De Blasio) and Ref 35 (de Lange).
+- **Broken links**: Repair dead links in Refs 48, 57, 86.
+- **Formatting style**: The bibliography must be strictly formatted in **APA style**.
 
-### Step 4: 每個 claim 做五問
+---
 
-方向性是審稿價值核心。每個 index/claim 都問:
+## 4. Review Template Formatting Rules
 
-1. Healthy/normal condition 的方向是什麼?
-2. Disease/pathological condition 的方向是什麼?
-3. 兩者相同、相反、還是不能比較?
-4. 有沒有 stage-dependent reversal,例如 preclinical/MCI compensatory phase?
-5. 有沒有 region-dependent、method-dependent、algorithm-dependent 的方向差異?
+- **Remove redundant subtitles**: Ensure that sub-headers like `**Why it matters:**` are removed from the Major Comments to make the report concise and professional. Integrate the context directly under the `Issue` or as a continuing paragraph.
+- Use the following format for each Major Comment:
+  ```markdown
+  ### Major X — [Descriptive Title]
 
-先列出名詞 convention 映射,再寫結論。例如 aperiodic:
-
-```text
-Steeper slope = log-log slope 更負 = slope 數值下降 = FOOOF exponent 上升
-Flatter slope = log-log slope 較不負 = slope 數值上升 = FOOOF exponent 下降
-```
-
-### Step 5: 查近年 review 以定位爭議
-
-任何 claim 寫成定論前,先找近 2-3 年 systematic review / consensus / editorial。目標不是堆 citation,而是判斷:
-
-- 是否有 unresolved controversy
-- 是否有 consensus guideline
-- 是否有 directionality inconsistency
-- 是否有臨床轉譯或標準化缺口
-
-若發現重大爭議,建立 `★KEY_CONTROVERSY_*.md`。
-
-### Step 6: 做 mechanistic synthesis
-
-把文獻從 L1/L2 推到 L4/L5:
-
-- L1: 列出相關文獻
-- L2: 依稿件指標分類
-- L3: 檢查稿件與文獻是否一致
-- L4: 定位方向性爭議、鑑別點、缺漏 consensus
-- L5: 用使用者既有 PhD/lecture/clinical expertise 串成機制軸
-
-審稿信最有價值的 comment 通常是 L4 + L5,不是最長的 bibliography。
-
-### Step 7: 產出可直接使用的 reviewer comments
-
-Major comment 應包含:
-
-- 稿件問題:精準指出章節與 claim
-- 文獻證據:代表性支持、反例、systematic review/consensus
-- 對作者的可行修改:改表格欄位、改 wording、補哪幾篇、加入哪個 mechanistic axis
-- reviewer stance: why this matters for interpretation, generalizability, or clinical translation
-
-Minor comment 用於 state-vs-trait、方法學警示、單篇補充引用、術語精準化。
-
-## 輸出格式
-
-優先使用 `assets/templates/`:
-
-- `analysis_report_template.md`: 主分析報告
-- `index_template.md`: 文獻索引
-- `key_note_template.md`: 爭議或鑑別專文
-
-需要詳細踩坑與 guardrails 時讀 `references/workflow_guardrails.md`。
-
-## 驗證
-
-結案前檢查:
-
-- `Analysis_Report.md` 與 `INDEX.md` 皆存在。
-- 每個主題資料夾的數量與 `INDEX.md` 一致,或在報告中說明版本差異。
-- 每個 Major comment 至少有一個本機來源與一個可檢查的修改建議。
-- gap 不假裝填補:建立 `README_gap_note.md` 或在 report 中明確標示。
-- 未把 healthy aging、disease、MCI/preclinical compensation 混成單一路徑。
+  - **Issue:** [Specify manuscript location, line numbers, and the problem. Ground it with primary literature or external citation.]
+    [Context of why it matters, integrated as a paragraph without a separate sub-header.]
+  - **Suggested resolution:** [Concrete, actionable steps for the authors to resolve the issue.]
+  ```
+- Minor Comments should follow a page/line or figure/table number mapping.
