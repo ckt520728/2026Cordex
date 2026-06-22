@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scholar Research Review"
+  short_description: "以可核實文獻重建學者研究時間軸、主題演化與學術貢獻"
+  default_prompt: "Use $scholar-research-review to reconstruct a scholar research timeline and audit every major claim against verified publications."
