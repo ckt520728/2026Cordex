@@ -1,0 +1,4 @@
+interface:
+  display_name: "決策備忘錄顧問"
+  short_description: "揭露兩難背後的取捨、隱性目標、可逆性與未來後悔點而不代替決策"
+  default_prompt: "Use $decision-memo-advisor to write a rigorous memo about these two options without choosing for me."

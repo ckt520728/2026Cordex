@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF 報告解剖"
+  short_description: "深讀 PDF 圖表與文字，找出關鍵數字、被淡化趨勢與追問"
+  default_prompt: "Use $pdf-report-autopsy to analyze this report, including every chart and table."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "競品 X-Ray"
+  short_description: "拆解競品承諾、忽略客群、迴避主題、交付落差與可防守的市場定位"
+  default_prompt: "Use $competitor-xray to compare these competitors and identify a defensible position."

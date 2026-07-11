@@ -1,0 +1,4 @@
+interface:
+  display_name: "每週收工回顧"
+  short_description: "區分有效進展與假性忙碌，決定停止與加倍投入事項並排定週一前三項"
+  default_prompt: "Use $weekly-shutdown-review to turn this weeks work into a candid review and Monday top three."

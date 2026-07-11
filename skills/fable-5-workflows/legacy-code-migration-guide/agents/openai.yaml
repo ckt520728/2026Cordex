@@ -1,0 +1,4 @@
+interface:
+  display_name: "舊程式遷移指南"
+  short_description: "解釋 legacy module、追蹤相依關係、評估升級破壞面並產生遷移計畫"
+  default_prompt: "Use $legacy-code-migration-guide to map this module and plan a safe dependency upgrade."

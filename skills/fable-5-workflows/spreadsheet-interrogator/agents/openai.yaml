@@ -1,0 +1,4 @@
+interface:
+  display_name: "試算表質問器"
+  short_description: "分析表格異常、可疑共變、停止事項與 CFO 可能質疑並展示計算"
+  default_prompt: "Use $spreadsheet-interrogator to challenge this dataset and show the supporting calculations."

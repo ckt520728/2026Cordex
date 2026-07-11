@@ -1,0 +1,4 @@
+interface:
+  display_name: "決策研究壓縮器"
+  short_description: "把多份來源壓縮為含共識、矛盾、弱證據與決策缺口的短篇 brief"
+  default_prompt: "Use $decision-research-compressor to synthesize these sources for my decision."
