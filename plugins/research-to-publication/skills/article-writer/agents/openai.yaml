@@ -1,0 +1,4 @@
+interface:
+  display_name: "Article Writer"
+  short_description: "將研究素材與核准大綱展開為流暢且可直接公開發布的完整長文"
+  default_prompt: "Use $article-writer to turn these approved notes into a polished article."

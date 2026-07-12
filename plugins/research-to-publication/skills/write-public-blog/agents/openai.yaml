@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Public Blog"
+  short_description: "Translate approved evidence into fluent public prose."
+  default_prompt: "Use $write-public-blog to create a Traditional Chinese public article."

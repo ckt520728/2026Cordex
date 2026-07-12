@@ -1,0 +1,4 @@
+interface:
+  display_name: "Write Academic Paper"
+  short_description: "Draft an evidence-calibrated academic manuscript."
+  default_prompt: "Use $write-academic-paper to draft a manuscript from the approved claim ledger."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Synthesize Evidence Phase Two"
+  short_description: "Resolve contradictions through multi-agent evidence synthesis."
+  default_prompt: "Use $synthesize-evidence-phase-two to integrate the phase-one analyses."

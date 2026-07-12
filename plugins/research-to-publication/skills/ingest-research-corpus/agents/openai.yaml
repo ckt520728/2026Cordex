@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ingest Research Corpus"
+  short_description: "Register PDFs and NotebookLM syntheses with provenance."
+  default_prompt: "Use $ingest-research-corpus to import and map this PDF and NotebookLM corpus."

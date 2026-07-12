@@ -1,0 +1,4 @@
+interface:
+  display_name: "Analyze Evidence Phase One"
+  short_description: "Run source triage and deep primary-paper analysis."
+  default_prompt: "Use $analyze-evidence-phase-one to analyze the registered primary sources."
