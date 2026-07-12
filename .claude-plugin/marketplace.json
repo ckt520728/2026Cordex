@@ -1,0 +1,15 @@
+{
+  "name": "cordex",
+  "owner": {
+    "name": "ckt520728"
+  },
+  "plugins": [
+    {
+      "name": "research-to-publication",
+      "source": "./plugins/research-to-publication",
+      "description": "Evidence-bound workflow from local PDFs and NotebookLM synthesis to academic paper, public blog, and verified publication.",
+      "version": "0.1.0",
+      "category": "research"
+    }
+  ]
+}
