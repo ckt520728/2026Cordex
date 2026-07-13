@@ -3,6 +3,7 @@
   "owner": {
     "name": "ckt520728"
   },
+  "description": "Personal marketplace of evidence-bound research, writing, and publication workflows for Claude Code.",
   "plugins": [
     {
       "name": "research-to-publication",
