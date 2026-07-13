@@ -1,6 +1,6 @@
 {
   "name": "research-to-publication",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Evidence-bound workflow from local PDFs and NotebookLM synthesis to academic paper, public blog, and verified publication.",
   "author": {
     "name": "朱國大醫師"
@@ -9,7 +9,7 @@
   "interface": {
     "displayName": "Research to Publication",
     "shortDescription": "從研究資料到論文、科普文章與發布",
-    "longDescription": "匯入本地 PDF 與 NotebookLM 跨文獻分析，經兩階段證據稽核與整合，產出 academic paper、繁體中文 blog 並在核准後發布。",
+    "longDescription": "匯入本地 PDF 與 NotebookLM 跨文獻分析，經兩階段證據稽核與整合，產出 academic paper、通過中文優先術語與語言稽核的繁體中文 blog，並在核准後發布。",
     "developerName": "朱國大醫師",
     "category": "Research",
     "capabilities": ["research", "writing", "publishing"],

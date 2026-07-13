@@ -74,6 +74,15 @@ description: 從一個題目或一份素材(研究筆記、草稿、論文、程
 
 依 outline 展開時,每段套用以下原則:
 
+**若由 `$write-public-blog` 呼叫，先套用研究型繁中 blog override：**
+
+- 敘事語言以自然繁體中文為主；專有名詞首次使用 `中文（English, acronym）`，後續使用中文或既定縮寫。
+- 模型、試驗、generic drug names、genes/proteins、biomarkers、units 與 statistical acronyms 可保留英文；一般研究敘事詞不得反覆以英文替代中文。
+- 每段原則上不超過 240 個中文字；標題、圖說、表格、metadata、tags 與 homepage card 也適用相同語言規則。
+- 完稿後必須做 Chinese-dominance pass，檢查同一句中三個以上非白名單英文詞的情況。
+- 不要求第一人稱真實經驗，也不強制 code block；除非來源材料與讀者需求確實支持。
+- 任何語言改寫都不得改變 effect estimate、citation scope、causal strength 或 claim-ledger status。
+
 **Hook 段**(第 1 段):
 - 不要用「In recent years, AI has become...」這種 LLM 招牌開場
 - 用具體場景、具體數字、或具體錯誤經驗起頭
@@ -81,7 +90,7 @@ description: 從一個題目或一份素材(研究筆記、草稿、論文、程
 
 **論證段**(中間段):
 - 每段一個論點,論點要可反駁(不要寫所有人都同意的廢話)
-- 技術文章:**至少一個段落有實際 code block**(不是 pseudo code,是能跑的)
+- 一般技術文章:**至少一個段落有實際 code block**(不是 pseudo code,是能跑的)；研究型 public blog 依上述 override，不強制 code block
 - code block 之後要有「為什麼這段這樣寫」的 1-2 句說明,不要只貼 code
 
 **例子段**:
@@ -121,7 +130,7 @@ description: 從一個題目或一份素材(研究筆記、草稿、論文、程
 
 ## 重要的編輯原則
 
-**第一人稱 + 具體**:這類文章的價值是「作者的真實經驗」,不是「教科書知識」。寫的時候用 "I"/"我",而不是 "we"/"one"。寧可講一個你踩過的坑,也不要列三個 best practices。
+**第一人稱 + 具體**:一般經驗型文章的價值是「作者的真實經驗」,不是「教科書知識」。寫的時候用 "I"/"我",而不是 "we"/"one"。寧可講一個你踩過的坑,也不要列三個 best practices。研究型 public blog 不得虛構第一人稱經驗，應依 `$write-public-blog` override 與 evidence ledger。
 
 **反 LLM 文風清單**(以下這些寫法看到就改掉):
 - ❌ "In today's fast-paced world of AI..."

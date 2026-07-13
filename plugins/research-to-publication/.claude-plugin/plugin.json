@@ -1,6 +1,6 @@
 {
   "name": "research-to-publication",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Evidence-bound workflow from local PDFs and NotebookLM synthesis to academic paper, public blog, and verified publication.",
   "author": {
     "name": "朱國大醫師"
