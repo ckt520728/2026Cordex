@@ -1,0 +1,4 @@
+interface:
+  display_name: "In-Hospital Mortality Analysis"
+  short_description: "Develop and audit hospital mortality models"
+  default_prompt: "Use $analyze-in-hospital-mortality to design a PHI-safe one-year in-hospital mortality predictor analysis."
