@@ -24,3 +24,11 @@ shape.
 1. Define the project scope in this README.
 2. Choose the implementation stack.
 3. Add setup and run instructions once the first working code exists.
+
+## Oak Loop Engineering
+
+- Installable skill: [`skills/oak-loop-engineering/`](skills/oak-loop-engineering/)
+- Wrap-up and pitfalls:
+  [`outputs/oak-loop-engineering-2026-07-24/WRAP-UP.md`](outputs/oak-loop-engineering-2026-07-24/WRAP-UP.md)
+- Reproducible run artifacts:
+  [`outputs/oak-loop-engineering-2026-07-24/artifacts/`](outputs/oak-loop-engineering-2026-07-24/artifacts/)
