@@ -4,7 +4,7 @@ date: 2026-07-26
 tags: [NIBS, NotebookLM, research-oak-loop, pitfalls, wrap-up]
 category: project-wrap-up
 run_id: 20260726-nibs-cognition-neuropsychiatry
-status: PUBLISHING
+status: PUBLISHED_AND_MIRRORED
 source_ids: [NLM-01, NLM-02, NLM-03, NLM-04, NLM-05, NLM-06, S01-S36]
 ---
 
@@ -114,6 +114,13 @@ runs/20260726-nibs-cognition-neuropsychiatry/
 - **防呆：** 發布前自動掃描正文可見文字；排除參考文獻、英文對照欄、研究專名與必要縮寫後，英文單字殘留必須為 0。
 - **驗證：** 390 × 844 行動版 Playwright 快照、疾病／技術切換、0 console errors；正文英文殘留稽核通過。
 
+### 11. PowerShell `-LiteralPath` 不展開萬用字元
+
+- **現象：** `Copy-Item -LiteralPath "$source\*"` 只建立空白目的地，沒有複製任何 artifacts；初次驗證得到 `COUNT_MISMATCH_10_0`。
+- **原因：** `-LiteralPath` 會把 `*` 視為字面字元，不執行 wildcard expansion。
+- **修正：** 先以 `Get-ChildItem -LiteralPath $source` 解析明確子項，再逐項使用 `Copy-Item -LiteralPath` 複製。
+- **驗證：** 來源與目的地皆為 10 份檔案，逐檔 SHA-256 結果 `Missing=0`、`Mismatch=0`。
+
 ## Browser QA
 
 - Desktop load：成功。
@@ -134,12 +141,13 @@ runs/20260726-nibs-cognition-neuropsychiatry/
 - C16 最後一項 source traceability 已補入 S24、S25。
 - 最終 verdict：`FINAL ACCEPT`。
 
-## 發布進度
+## 發布與歸檔結果
 
 1. `kidney-cognition-lab` 已推送 commit `c51ac07b6d786fdbc6339220b9a6906ac0c64f38`。
-2. Vercel 文章與首頁已回傳 HTTP 200。
-3. GitHub Pages 部署與 `2026Cordex`／Second Brain 鏡像正在進行。
-4. Academic paper 僅作研究草稿歸檔，未投稿。
+2. Vercel 首頁與文章均回傳 HTTP 200；GitHub Pages legacy build 已啟動，完成前文章 URL 暫時回傳 404。
+3. `2026Cordex` 已推送成果 commit `9f293798f9918deec0486795e4b7d51cf36ccf7b`。
+4. 10 份 artifacts 已鏡像至 `G:\我的雲端硬碟\Second Brain\知識庫\2026Cordex\outputs\20260726-nibs-cognition-neuropsychiatry`，逐檔 SHA-256 比對結果為 Missing=0、Mismatch=0。
+5. Academic paper 僅作研究草稿歸檔，未投稿。
 
 ## 下一版 workflow／skill 建議
 
@@ -155,4 +163,4 @@ runs/20260726-nibs-cognition-neuropsychiatry/
 8. `human_gate`：顯示 exact touched paths、diff、public destination。
 9. `publish_and_mirror`：homepage、sitemap、public HTTP、GitHub、Second Brain、SHA-256。
 
-只有在本次真實發布結果與使用者回饋完成後，才有足夠 first-hand evidence 將它升級成正式 skill/plugin。
+本次已完成真實發布、遠端 push、公開 HTTP 驗證、Second Brain 鏡像與使用者回饋閉環，已有足夠第一手證據進入正式 skill/plugin 規格化階段。
