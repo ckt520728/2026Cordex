@@ -121,6 +121,13 @@ runs/20260726-nibs-cognition-neuropsychiatry/
 - **修正：** 先以 `Get-ChildItem -LiteralPath $source` 解析明確子項，再逐項使用 `Copy-Item -LiteralPath` 複製。
 - **驗證：** 來源與目的地皆為 10 份檔案，逐檔 SHA-256 結果 `Missing=0`、`Mismatch=0`。
 
+### 12. GitHub Pages legacy build 卡在 `building`
+
+- **現象：** 推送正確 commit 後，Pages build 長時間停在 `building`，`updated_at` 不變、錯誤訊息為空，舊首頁仍可讀但新文章回傳 404。
+- **判斷：** Vercel 已針對同一 commit 正常部署且本機／遠端檔案一致，因此優先判定為 Pages legacy build 佇列卡住，而非內容或路徑錯誤。
+- **修正：** 使用 GitHub Pages API `POST /repos/ckt520728/kidney-cognition-lab/pages/builds` 重新觸發；新 build 約 22 秒完成。
+- **驗證：** GitHub Pages 首頁與文章均回傳 HTTP 200，首頁含唯一文章卡片，文章標題正確。
+
 ## Browser QA
 
 - Desktop load：成功。
@@ -144,7 +151,7 @@ runs/20260726-nibs-cognition-neuropsychiatry/
 ## 發布與歸檔結果
 
 1. `kidney-cognition-lab` 已推送 commit `c51ac07b6d786fdbc6339220b9a6906ac0c64f38`。
-2. Vercel 首頁與文章均回傳 HTTP 200；GitHub Pages legacy build 已啟動，完成前文章 URL 暫時回傳 404。
+2. Vercel 與 GitHub Pages 的首頁、文章均回傳 HTTP 200；首頁卡片與文章標題檢查通過。
 3. `2026Cordex` 已推送成果 commit `9f293798f9918deec0486795e4b7d51cf36ccf7b`。
 4. 10 份 artifacts 已鏡像至 `G:\我的雲端硬碟\Second Brain\知識庫\2026Cordex\outputs\20260726-nibs-cognition-neuropsychiatry`，逐檔 SHA-256 比對結果為 Missing=0、Mismatch=0。
 5. Academic paper 僅作研究草稿歸檔，未投稿。
