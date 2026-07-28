@@ -1,0 +1,4 @@
+interface:
+  display_name: "NotebookLM Markdown 匯出器"
+  short_description: "批次匯出 NotebookLM 文字型 artifacts 為 Markdown"
+  default_prompt: "使用 $notebooklm-markdown-exporter 將指定 NotebookLM notebook 的可文字化 artifacts 匯出為 Markdown 並驗證完整性。"
