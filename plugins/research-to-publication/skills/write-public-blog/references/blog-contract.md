@@ -1,5 +1,24 @@
 # Public blog contract
 
+## Voice
+
+- Bind an author voice profile before drafting. See `author-voice-contract.md`.
+- Correct Traditional Chinese and correct author voice are separate requirements; both are audited.
+- Evidence outranks voice. Voice governs how a supported claim is phrased, never which claims may be made.
+- Establish who is speaking before the argument begins.
+- Enter in the reader's language with a concrete scene; never open on a definition or a terminology table.
+- Include at least one concede-then-patch pivot: accept the mainstream account, name what it drops, synthesise.
+- Include at least one first-hand observation. **Never invent one** — see the anti-fabrication boundary below.
+- Cite by author and year in prose; no inline `[n]` markers in a blog body.
+- Close with synthesis plus at most five take-away bullets. No disclaimer paragraph.
+
+## Anti-fabrication boundary
+
+No fabricated case, case count, patient detail, or clinical anecdote may appear under a named
+author's byline — not to satisfy a voice rule, not to complete a checklist, not for any reason.
+If no real first-hand material is available, leave the slot empty, report it, and name the
+insertion point for the author.
+
 ## Language
 
 - Use natural Traditional Chinese as the narrative language.
@@ -21,6 +40,9 @@
 - Require explicit content approval before publication.
 
 ## Required pre-publication audit
+
+Run the language audit below **and** the voice audit in `author-voice-contract.md`.
+Report both results together, pass/fail per check.
 
 1. Build and verify the first-use terminology table.
 2. Exclude references, code, formulas, and verbatim quotations from the prose-language audit.

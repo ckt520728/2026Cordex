@@ -10,7 +10,7 @@ Treat the project folder as the state spine. Read `references/workflow-contract.
 ## Required sequence
 
 1. Invoke `$ingest-research-corpus` to initialize and register inputs.
-2. Stop at Gate 1 until scope, author, audience, outputs, and canonical sources are approved.
+2. Stop at Gate 1 until scope, author, audience, outputs, canonical sources, and the bound author voice profile are approved.
 3. Invoke `$analyze-evidence-phase-one`; create source-level analyses and atomic claims.
 4. Stop at Gate 2 until the primary-source set and claim ledger are approved.
 5. Invoke `$synthesize-evidence-phase-two`; resolve grounding, duplication, and contradictions.
@@ -27,6 +27,8 @@ Treat the project folder as the state spine. Read `references/workflow-contract.
 - Preserve many-to-many relations among questions, syntheses, sources, and claims.
 - Separate `fact`, `source_interpretation`, `cross_source_inference`, and `hypothesis`.
 - Do not strengthen a blog claim beyond the academic manuscript or claim ledger.
+- Evidence outranks voice. A voice rule governs how a supported claim is phrased, never which claims may be made.
+- Never fabricate first-hand experience, case counts, or patient detail to satisfy a voice requirement. Solicit it from the author or leave the slot empty and report it.
 - Resume from existing state; never restart completed phases without cause.
 - Keep external writes and publication behind explicit approval.
 
