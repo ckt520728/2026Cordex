@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Research Lab Explorer"
+  short_description: "Design interactive, evidence-rich research lab websites"
+  default_prompt: "Use $build-research-lab-explorer to design an interactive research lab website from my publications and lab information."
