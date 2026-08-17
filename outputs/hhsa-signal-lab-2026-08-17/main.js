@@ -1,6 +1,7 @@
 /* HHSA Signal Lab — browser interaction layer. */
 (function () {
   "use strict";
+  window.HHSA_SIGNAL_LAB_LOADED = true;
 
   var D = window.HHSA_DATA || null;
   var labels = {
@@ -405,7 +406,15 @@
     window.requestAnimationFrame(frame);
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
-  else boot();
-  window.HHSA_SIGNAL_LAB_LOADED = true;
+  try {
+    boot();
+    document.documentElement.setAttribute("data-hhsa-ready", "true");
+  } catch (error) {
+    var errorBanner = byId("notHosted");
+    if (errorBanner) {
+      errorBanner.style.display = "block";
+      errorBanner.textContent = "Simulator startup error: " + String(error && error.message ? error.message : error);
+    }
+    if (window.console && console.error) console.error(error);
+  }
 }());

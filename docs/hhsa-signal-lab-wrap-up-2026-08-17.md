@@ -9,8 +9,8 @@ the extended Holo-Hilbert Spectral Analysis (HHHSA).
 
 The simulator was rebuilt as a local-first, Apps Script-compatible web app and
 deployed to Google Apps Script as `HHSA Signal Lab`. The existing deployment
-was updated to version 6, and a fresh cache-independent deployment was created
-as version 7.
+was updated through version 8, and the fresh cache-independent deployment was
+updated through version 9.
 
 Primary public web-app URL:
 
@@ -65,8 +65,8 @@ PD-style beta bursts, AD/MCI-style slowing, and a TRD gamma-AM marker.
 - `clasp show-file-status --json` - confirmed five deployable files:
   `appsscript.json`, `Code.gs`, `data.html`, `index.html`, and `main.html`.
 - `clasp push --force` - uploaded the five Apps Script-compatible files above.
-- `clasp create-deployment` - updated the existing deployment to version 6 and
-  created a fresh deployment URL at version 7.
+- `clasp create-deployment` - updated the existing deployment through version 8
+  and the fresh deployment through version 9.
 - `clasp open-web-app <deploymentId> --json` - returned the URL recorded above.
 - Read-only live probe - returned HTTP 200, the `HHSA Signal Lab` title, and the
   embedded data payload, with no `SyntaxError`, `ReferenceError`, or `window is
@@ -127,6 +127,15 @@ client initialization path. The final version inserts `data.html` and
 `main.html` as ordinary inline script blocks in `doGet()`. Both the repaired old
 URL and the fresh URL now return HTTP 200 with inline data and app markers, no
 server error, and no dynamic `atob()` loader.
+
+### 9. Apps Script injection can miss the original DOM ready event
+
+The page shell loaded, but the canvas and controls remained static because the
+client waited for `DOMContentLoaded`. Apps Script had injected the user HTML
+after the iframe's original ready event, so the listener did not reliably fire.
+The client now calls `boot()` immediately because its script is placed after all
+required DOM elements. It also displays a visible startup-error banner if a
+future client exception occurs.
 
 ## End-of-day handoff
 
