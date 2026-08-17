@@ -197,9 +197,10 @@
     var values = [], max = 0;
     for (var j = 0; j < c.n_fc; j++) {
       var total = 0;
-      for (var i = 0; i < c.n_fam; i++) total += c.grid[i * c.n_fc + j] || 0;
+      for (var i = 0; i < c.n_fam; i++) total += (c.grid[i] && Number(c.grid[i][j])) || 0;
       values.push(total); max = Math.max(max, total);
     }
+    if (!isFinite(max) || max <= 0) max = 1;
     function xOf(value) { return left + (log10(value) - log10(c.fc_bins[0])) / (log10(c.fc_bins[c.fc_bins.length - 1]) - log10(c.fc_bins[0])) * plotW; }
     function yOf(value) { return bottom - value / max * plotH * .88; }
     ctx.beginPath(); ctx.moveTo(xOf(c.fc_bins[0]), bottom);
@@ -395,7 +396,7 @@
       var banner = byId("notHosted"); banner.style.display = "block"; banner.textContent = "HHSA data payload did not load. Open this folder through a local web server or Apps Script."; return;
     }
     els.traceCanvas = byId("traceCanvas"); els.spectrumCanvas = byId("spectrumCanvas");
-    buildCaseButtons(); bindControls(); syncRangeInputs(); updateReadouts(); drawSpectrum(); drawTrace();
+    buildCaseButtons(); bindControls(); syncRangeInputs(); updateReadouts(); drawTrace(); drawSpectrum();
     byId("passcodeBtn").addEventListener("click", unlock);
     byId("passcodeInput").addEventListener("keydown", function (event) { if (event.key === "Enter") unlock(); });
     if (!hasBackend()) { byId("notHosted").style.display = "block"; byId("notHosted").textContent = NOT_HOSTED_MSG; }

@@ -9,8 +9,8 @@ the extended Holo-Hilbert Spectral Analysis (HHHSA).
 
 The simulator was rebuilt as a local-first, Apps Script-compatible web app and
 deployed to Google Apps Script as `HHSA Signal Lab`. The existing deployment
-was updated through version 8, and the fresh cache-independent deployment was
-updated through version 9.
+was updated through version 10, and the fresh cache-independent deployment was
+updated through version 11.
 
 Primary public web-app URL:
 
@@ -65,8 +65,8 @@ PD-style beta bursts, AD/MCI-style slowing, and a TRD gamma-AM marker.
 - `clasp show-file-status --json` - confirmed five deployable files:
   `appsscript.json`, `Code.gs`, `data.html`, `index.html`, and `main.html`.
 - `clasp push --force` - uploaded the five Apps Script-compatible files above.
-- `clasp create-deployment` - updated the existing deployment through version 8
-  and the fresh deployment through version 9.
+- `clasp create-deployment` - updated the existing deployment through version 10
+  and the fresh deployment through version 11.
 - `clasp open-web-app <deploymentId> --json` - returned the URL recorded above.
 - Read-only live probe - returned HTTP 200, the `HHSA Signal Lab` title, and the
   embedded data payload, with no `SyntaxError`, `ReferenceError`, or `window is
@@ -136,6 +136,14 @@ after the iframe's original ready event, so the listener did not reliably fire.
 The client now calls `boot()` immediately because its script is placed after all
 required DOM elements. It also displays a visible startup-error banner if a
 future client exception occurs.
+
+### 10. The HHT renderer assumed the wrong grid shape
+
+The exported holo-spectrum is a nested `n_fam` by `n_fc` array. The HHT
+projection initially indexed it as a flat array, producing non-finite canvas
+coordinates and aborting startup before the live trace was drawn. The renderer
+now sums `grid[i][j]`, guards the projection maximum, and draws the live trace
+before the spectrum. Projection checks pass for all six synthetic conditions.
 
 ## End-of-day handoff
 
