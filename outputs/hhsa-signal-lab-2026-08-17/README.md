@@ -16,10 +16,10 @@ tuned without recomputing the offline spectrum.
 
 ## Run locally
 
-Open `index.html` directly, or serve this product folder with any static web server:
+Open `index.html` directly, or serve this folder with any static web server:
 
 ```bash
-python -m http.server 8765 --directory .
+python -m http.server 8765 --directory webapp
 ```
 
 The page will show a small local-preview notice. Apps Script logging is enabled
@@ -36,8 +36,8 @@ only when the page is served from a deployed Apps Script `/exec` URL.
 
 ## Apps Script deployment
 
-`Code.gs` includes `doGet()` and a base64 asset bridge. When Apps Script renders
-`index.html`, it embeds the raw client code from `data.html` and `main.html`;
+`Code.gs` includes `doGet()` and an inline asset bridge. When Apps Script renders
+`index.html`, it inserts ordinary script blocks from `data.html` and `main.html`;
 when the same file is opened locally, it falls back to sibling `data.js` and
 `main.js` files. `.claspignore` keeps those browser-only `.js` files out of the
 Apps Script project, where `.js` files would otherwise execute server-side.
@@ -46,9 +46,6 @@ Existing Sheets / Docs run logging is kept in `Code.gs` and remains marker-only.
 The spectra and detector statistics are simulated / precomputed. Nothing in
 this app connects to hardware, delivers stimulation, or makes a clinical
 diagnosis.
-
-This bundle intentionally omits `.clasp.json`; bind it to your own Apps Script
-project before using `clasp push`.
 
 ## Verification
 

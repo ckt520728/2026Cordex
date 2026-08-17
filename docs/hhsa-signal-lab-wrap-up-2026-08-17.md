@@ -8,10 +8,15 @@ the extended Holo-Hilbert Spectral Analysis (HHHSA).
 ## Outcome
 
 The simulator was rebuilt as a local-first, Apps Script-compatible web app and
-deployed to Google Apps Script as `HHSA Signal Lab`, version 5 on the existing
-deployment URL.
+deployed to Google Apps Script as `HHSA Signal Lab`. The existing deployment
+was updated to version 6, and a fresh cache-independent deployment was created
+as version 7.
 
-Public web-app URL:
+Primary public web-app URL:
+
+<https://script.google.com/macros/s/AKfycbxesNU--uuZ95PTzX1yPBchLdI7EkhqARCoo6fIAUWLCZxRl0Y4-CCrJFpYUxd6kyBK/exec>
+
+The original URL was also repaired and remains available:
 
 <https://script.google.com/macros/s/AKfycbw5ntn-fRkXiEMI_-Adk3Zvd71W6MIjDVtSA-jMyfvPyj1eOFqdFIheMFRFhKDPLNDg/exec>
 
@@ -60,7 +65,8 @@ PD-style beta bursts, AD/MCI-style slowing, and a TRD gamma-AM marker.
 - `clasp show-file-status --json` - confirmed five deployable files:
   `appsscript.json`, `Code.gs`, `data.html`, `index.html`, and `main.html`.
 - `clasp push --force` - uploaded the five Apps Script-compatible files above.
-- `clasp create-deployment` - updated the existing deployment through version 5.
+- `clasp create-deployment` - updated the existing deployment to version 6 and
+  created a fresh deployment URL at version 7.
 - `clasp open-web-app <deploymentId> --json` - returned the URL recorded above.
 - Read-only live probe - returned HTTP 200, the `HHSA Signal Lab` title, and the
   embedded data payload, with no `SyntaxError`, `ReferenceError`, or `window is
@@ -111,7 +117,16 @@ inject their base64 contents into the HTML response from `doGet()`.
 The initial template-based `doGet()` path returned `SyntaxError: Invalid or
 unexpected token` from `Code.gs`. The final handler uses
 `createHtmlOutputFromFile()` plus explicit server-side asset replacement. The
-live probe now returns HTTP 200 with the expected title and payload.
+live probe returned HTTP 200 with the expected title and payload.
+
+### 8. Dynamic base64 script injection was fragile in the Apps Script sandbox
+
+The version 5 page decoded base64 and created executable script elements at
+runtime. Although the HTTP response was valid, this added a sandbox-sensitive
+client initialization path. The final version inserts `data.html` and
+`main.html` as ordinary inline script blocks in `doGet()`. Both the repaired old
+URL and the fresh URL now return HTTP 200 with inline data and app markers, no
+server error, and no dynamic `atob()` loader.
 
 ## End-of-day handoff
 

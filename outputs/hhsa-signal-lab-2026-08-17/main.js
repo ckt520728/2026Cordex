@@ -407,4 +407,5 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
+  window.HHSA_SIGNAL_LAB_LOADED = true;
 }());
