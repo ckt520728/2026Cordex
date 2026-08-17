@@ -37,9 +37,11 @@ only when the page is served from a deployed Apps Script `/exec` URL.
 ## Apps Script deployment
 
 `Code.gs` includes `doGet()` and a base64 asset bridge. When Apps Script renders
-`index.html`, it embeds `data.js` and `main.js`; when the same file is opened
-locally, it falls back to sibling files. Existing Sheets / Docs run logging is
-kept in `Code.gs` and remains marker-only.
+`index.html`, it embeds the raw client code from `data.html` and `main.html`;
+when the same file is opened locally, it falls back to sibling `data.js` and
+`main.js` files. `.claspignore` keeps those browser-only `.js` files out of the
+Apps Script project, where `.js` files would otherwise execute server-side.
+Existing Sheets / Docs run logging is kept in `Code.gs` and remains marker-only.
 
 The spectra and detector statistics are simulated / precomputed. Nothing in
 this app connects to hardware, delivers stimulation, or makes a clinical

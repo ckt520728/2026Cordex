@@ -18,10 +18,19 @@ var REPORT_FOLDER = "HHSA_Demo_Reports";
 
 /** Serve the simulator as a standalone Apps Script web app. */
 function doGet() {
-  return HtmlService.createTemplateFromFile("index")
-    .evaluate()
-    .setTitle("HHSA Signal Lab")
-    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  var html = HtmlService.createHtmlOutputFromFile("index").getContent();
+  html = html.replace(
+    'id="hhsaDataAsset" data-code=""',
+    'id="hhsaDataAsset" data-code="' + includeBase64("data") + '"'
+  );
+  html = html.replace(
+    'id="hhsaMainAsset" data-code=""',
+    'id="hhsaMainAsset" data-code="' + includeBase64("main") + '"'
+  );
+  var output = HtmlService.createHtmlOutput(html);
+  output.setTitle("HHSA Signal Lab");
+  output.setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+  return output;
 }
 
 /** Embed sibling assets without exposing an Apps Script file URL. */

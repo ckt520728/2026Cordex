@@ -333,8 +333,8 @@
   <div id="passcodeScreen" class="lock" aria-hidden="true"><div class="lock-card"><div class="eyebrow">private demo gate</div><h2>Unlock the lab</h2><p>Enter the Apps Script passcode to enable run logging.</p><input id="passcodeInput" type="password" placeholder="Passcode"><button id="passcodeBtn">Unlock</button><p id="passcodeMsg"></p></div></div>
 
   <!-- In Apps Script these data attributes are replaced with base64 assets. Locally they fall back to sibling files. -->
-  <span id="hhsaDataAsset" data-code="<?!= includeBase64('data.js'); ?>" hidden></span>
-  <span id="hhsaMainAsset" data-code="<?!= includeBase64('main.js'); ?>" hidden></span>
+  <span id="hhsaDataAsset" data-code="" hidden></span>
+  <span id="hhsaMainAsset" data-code="" hidden></span>
   <script>
     (function () {
       function isTemplateValue(value) { return !value || value.indexOf("<?!") === 0; }

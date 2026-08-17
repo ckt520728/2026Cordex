@@ -1,14 +1,15 @@
-# End-of-day wrap-up — HHSA Signal Lab
+# End-of-day wrap-up: HHSA Signal Lab
 
 Date: 2026-08-17
 
 Project: dynamic simulator for EMD-based Hilbert Huang Transform (HHT) and
-the extended Holo-Hilbert Spectral Analysis (HHHSA)
+the extended Holo-Hilbert Spectral Analysis (HHHSA).
 
 ## Outcome
 
 The simulator was rebuilt as a local-first, Apps Script-compatible web app and
-deployed to Google Apps Script as `HHSA Signal Lab`, version 1.
+deployed to Google Apps Script as `HHSA Signal Lab`, version 5 on the existing
+deployment URL.
 
 Public web-app URL:
 
@@ -23,44 +24,47 @@ repository.
 The reproducible product bundle is in
 `outputs/hhsa-signal-lab-2026-08-17/`:
 
-- `index.html` — responsive signal-lab interface and Apps Script/local asset bridge.
-- `main.js` — animated synthetic signal, controls, HHT/HHHSA views, phase markers,
+- `index.html` - responsive signal-lab interface and Apps Script/local asset bridge.
+- `main.js` - animated synthetic signal, controls, HHT/HHHSA views, phase markers,
   case selection, and readouts.
-- `data.js` — deterministic six-condition holo-spectrum and detector payload from
+- `data.js` - deterministic six-condition holo-spectrum and detector payload from
   the Python prototype.
-- `Code.gs` — Apps Script `doGet`, base64 asset embedding, auth helpers, Sheets/
-  Docs logging, and marker-only safety boundary.
-- `appsscript.json` — Asia/Taipei runtime, anonymous web-app manifest, and
+- `data.html` and `main.html` - browser assets served as HTML files by Apps Script.
+- `Code.gs` - Apps Script `doGet`, server-side base64 asset injection, auth helpers,
+  Sheets/Docs logging, and marker-only safety boundary.
+- `appsscript.json` - Asia/Taipei runtime, anonymous web-app manifest, and
   required Sheets/Docs/Drive scopes.
-- `README.md` — local run instructions, interactions, deployment notes, and
-  verification commands.
+- `.claspignore` - keeps browser-only `.js` files out of the Apps Script project.
+- `README.md` - local run instructions, interactions, deployment notes, and checks.
 
 ## What the simulator demonstrates
 
 1. EMD separates the oscillatory carrier modes.
 2. The Hilbert transform exposes instantaneous amplitude and phase.
 3. HHHSA decomposes the carrier IMF envelope a second time, revealing the
-   carrier-frequency × AM-frequency holo-spectrum.
+   carrier-frequency x AM-frequency holo-spectrum.
 4. The envelope phase becomes a simulated trigger coordinate.
 
 Interactive controls include carrier frequency, AM frequency, modulation depth,
-observation noise, target phase, pause/resume, reset, and a new noise seed.
-The six synthetic cases cover clean AM, theta–gamma PAC, sawtooth false-PAC
-guard, PD-style beta bursts, AD/MCI-style slowing, and a TRD gamma-AM marker.
+observation noise, target phase, pause/resume, reset, and a new noise seed. The
+six synthetic cases cover clean AM, theta-gamma PAC, sawtooth false-PAC guard,
+PD-style beta bursts, AD/MCI-style slowing, and a TRD gamma-AM marker.
 
 ## Verification performed
 
-- `node --check webapp/main.js` — passed.
-- `node --check webapp/data.js` — passed.
-- `node check-webapp.mjs webapp` — passed: HTML script block, `Code.gs`, and
+- `node --check webapp/main.js` - passed.
+- `node --check webapp/data.js` - passed.
+- `node check-webapp.mjs webapp` - passed: HTML script block, `Code.gs`, and
   six-condition payload all validated.
-- DOM contract check — passed: 15 JavaScript-referenced element IDs exist.
-- `clasp show-file-status --json` — confirmed five deployable files.
-- `clasp push --force` — uploaded `appsscript.json`, `Code.gs`, `data.js`,
-  `index.html`, and `main.js`.
-- `clasp create-deployment --description "HHSA Signal Lab v1"` — created
-  deployment version 1.
-- `clasp open-web-app <deploymentId> --json` — returned the URL recorded above.
+- DOM contract check - passed: 15 JavaScript-referenced element IDs exist.
+- `clasp show-file-status --json` - confirmed five deployable files:
+  `appsscript.json`, `Code.gs`, `data.html`, `index.html`, and `main.html`.
+- `clasp push --force` - uploaded the five Apps Script-compatible files above.
+- `clasp create-deployment` - updated the existing deployment through version 5.
+- `clasp open-web-app <deploymentId> --json` - returned the URL recorded above.
+- Read-only live probe - returned HTTP 200, the `HHSA Signal Lab` title, and the
+  embedded data payload, with no `SyntaxError`, `ReferenceError`, or `window is
+  not defined` response.
 
 ## Pitfalls and resolutions
 
@@ -74,8 +78,8 @@ architecture.
 ### 2. Local files and Apps Script need different asset loading paths
 
 Apps Script cannot serve sibling JavaScript files like a normal static server.
-The new page uses a base64 asset bridge when rendered by Apps Script and falls
-back to `data.js` / `main.js` sibling files when opened locally.
+The final page injects the browser code from `data.html` and `main.html` when
+served by Apps Script and falls back to `data.js` / `main.js` when opened locally.
 
 ### 3. The existing `.clasp.json` was only a placeholder
 
@@ -84,30 +88,36 @@ staging directory was used to create the authorized new Sheets-bound project;
 the real script ID was then bound to the simulator source folder. The public
 product bundle intentionally omits `.clasp.json`.
 
-### 4. `clasp push` initially reported “Skipping push”
+### 4. `clasp push` initially reported skipping the push
 
-`show-file-status` confirmed five files were pending. A single explicit
-`clasp push --force` uploaded the intended source successfully.
+`show-file-status` confirmed pending files. An explicit `clasp push --force`
+uploaded the intended source successfully.
 
 ### 5. Deployment URLs must not be guessed
 
 The web-app URL was obtained from `open-web-app --json` using the deployment ID.
 It was not constructed from the script ID.
 
-### 6. Automated anonymous HTTP verification returned 403
+### 6. Apps Script executed browser JavaScript as server code
 
-The deployment metadata and web-app entry point exist, but a read-only HTTP
-probe from this environment returned `403 Access Denied`. This may reflect the
-request environment or the effective Apps Script access setting. A manual
-browser check is still required before treating public access as verified.
+The first deployment uploaded `data.js` and `main.js` as Apps Script files. Apps
+Script tried to execute `data.js` on the server and failed with
+`ReferenceError: window is not defined`. The fix is to keep browser code in
+`data.html` and `main.html`, exclude the `.js` files with `.claspignore`, and
+inject their base64 contents into the HTML response from `doGet()`.
+
+### 7. Template evaluation caused a second deployment error
+
+The initial template-based `doGet()` path returned `SyntaxError: Invalid or
+unexpected token` from `Code.gs`. The final handler uses
+`createHtmlOutputFromFile()` plus explicit server-side asset replacement. The
+live probe now returns HTTP 200 with the expected title and payload.
 
 ## End-of-day handoff
 
-Next check: open the public web-app URL in a browser, confirm the page loads,
-switch between `HHT / 1D` and `HHHSA / 2D`, select at least one synthetic case,
-and verify that the controls update the live trace. If the browser also returns
-403, review the deployment's **Execute as** and **Who has access** settings in
-Apps Script and redeploy the same project version.
+Refresh/open the public web-app URL in a browser, confirm the page loads, switch
+between `HHT / 1D` and `HHHSA / 2D`, select at least one synthetic case, and
+verify that the controls update the live trace.
 
 Scientific boundary: all signals, spectra, and trigger markers are simulated or
 precomputed. The app does not analyze real EEG, deliver stimulation, or make a
