@@ -127,6 +127,12 @@ SetTokenInformation(TokenDefaultDacl) failed: 1344
 
 Git 僅 stage 本輸出目錄，不使用 `git add .` 或 `git add -A`。
 
+### 11. Windows line endings 會讓本機 manifest 與 GitHub blob 不一致
+
+第一輪遠端 byte audit 發現 10/12 manifest entries 相符，但 JSON、CSV 與 manifest 本身因 Windows CRLF 被 Git 正規化為 LF，造成遠端 SHA-256 不同。內容與數值雖未改變，仍不能宣稱 byte-exact delivery。
+
+處理方式：JSON 與 CSV writer 明確輸出 LF，manifest 也以 UTF-8 without BOM + LF 建立；每次 push 後再由 GitHub contents API 下載遠端 bytes 重新計算 SHA-256，不能只比較本機 working tree。
+
 ## Generated artifacts
 
 | 路徑 | 用途 |

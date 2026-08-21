@@ -519,7 +519,9 @@ def run_validation(output_dir: Path, make_figures: bool = True) -> dict[str, Any
             },
         )
 
-    with (output_dir / "amfm_validation_results.json").open("w", encoding="utf-8") as handle:
+    with (output_dir / "amfm_validation_results.json").open(
+        "w", encoding="utf-8", newline="\n"
+    ) as handle:
         json.dump(_json_ready(results), handle, ensure_ascii=False, indent=2)
 
     rows = [
@@ -530,7 +532,7 @@ def run_validation(output_dir: Path, make_figures: bool = True) -> dict[str, Any
         ("juan_fig6_all_cells", fig6_result["passed"], min(fig6_result["target_cell_energies"].values()), "energy"),
     ]
     with (output_dir / "amfm_validation_table.csv").open("w", encoding="utf-8", newline="") as handle:
-        writer = csv.writer(handle)
+        writer = csv.writer(handle, lineterminator="\n")
         writer.writerow(["case", "passed", "metric", "unit"])
         writer.writerows(rows)
     return _json_ready(results)
