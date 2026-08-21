@@ -1,0 +1,6 @@
+case,passed,metric,unit
+skill_ground_truth,True,24.90269813667955,h
+nguyen_<3|14>,True,2.5564940471208613,Hz
+juan_fig4_monotonic,True,365016495.2730367,ratio
+juan_fig5_monotonic,True,46.3103885573771,ratio
+juan_fig6_all_cells,True,0.4276999051587431,energy
