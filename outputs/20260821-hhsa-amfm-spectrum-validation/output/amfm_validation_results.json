@@ -1,0 +1,116 @@
+{
+  "skill_ground_truth": {
+    "expected_carrier_period_h": 3.0,
+    "expected_modulation_period_h": 24.0,
+    "recovered_modulation_period_h": 24.90269813667955,
+    "relative_error": 0.03761242236164793,
+    "reconstruction_error": 8.881784197001252e-16,
+    "rejected_fraction": 1.0010218626274109e-08,
+    "passed": true
+  },
+  "nguyen_s1": {
+    "expected_additive_hz": 2.0,
+    "recovered_additive_hz": 2.029090669875047,
+    "expected_carrier_hz": 14.0,
+    "recovered_carrier_hz": 14.050017282986392,
+    "expected_modulation_hz": 3.0,
+    "holo_carrier_peak_hz": 13.650040564181483,
+    "holo_modulation_peak_hz": 2.5564940471208613,
+    "target_energy": 0.4334024791191552,
+    "dyadic_2_to_4_hz_concentration": 0.6857272265087311,
+    "reconstruction_error": 4.440892098500626e-16,
+    "rejected_fraction": 0.002647575285015422,
+    "passed": true
+  },
+  "juan_fig4": {
+    "betas": [
+      0.0,
+      0.4,
+      1.0
+    ],
+    "target_energies": [
+      5.895798157336049e-09,
+      0.4928197833732869,
+      2.1520635802280323
+    ],
+    "energy_ratio_beta1_to_beta0": 365016495.2730367,
+    "energy_ratio_beta04_to_beta0": 83588306.48910174,
+    "monotonic": true,
+    "reconstruction_errors": [
+      2.220446049250313e-16,
+      4.440892098500626e-16,
+      4.440892098500626e-16
+    ],
+    "rejected_fractions": [
+      0.00043493261962861953,
+      7.518457125706885e-06,
+      4.095967682321866e-06
+    ],
+    "formula_assumption": "A_fA(t) = K * [1 + beta*cos(2*pi*4*t)]",
+    "passed": true
+  },
+  "juan_fig5": {
+    "sample_times_s": [
+      0.5,
+      1.5,
+      2.5,
+      3.5
+    ],
+    "expected_betas": [
+      0.125,
+      0.375,
+      0.625,
+      0.875
+    ],
+    "recovered_am_strengths": [
+      0.015859169692586855,
+      0.13530229711097935,
+      0.3741225330990611,
+      0.7344443106610761
+    ],
+    "recovered_carrier_hz": 31.994636076988055,
+    "monotonic": true,
+    "beta_squared_correlation": 0.9999988272294048,
+    "reconstruction_error": 4.440892098500626e-16,
+    "passed": true
+  },
+  "juan_fig6": {
+    "target_cell_energies": {
+      "case_a_32_by_4": 1.5184626277643702,
+      "case_a_64_by_4": 2.5436369225259257,
+      "case_b_32_by_4": 5.492768041232514,
+      "case_b_32_by_8": 0.4276999051587431
+    },
+    "negative_control_cell_energies": {
+      "case_a_32_by_8": 0.0,
+      "case_a_64_by_8": 0.01900114990940663,
+      "case_b_64_by_4": 0.0,
+      "case_b_64_by_8": 0.0
+    },
+    "specificity_ratios": {
+      "case_a_32": 6838547724575642.0,
+      "case_a_64": 133.86752563152422,
+      "case_b_4hz": 2.473722810372732e+16,
+      "case_b_8hz": 1926189133499312.0
+    },
+    "all_target_cells_positive": true,
+    "reconstruction_errors": [
+      8.881784197001252e-16,
+      4.440892098500626e-16
+    ],
+    "rejected_fractions": [
+      0.00027910884882686716,
+      7.881122056166767e-05
+    ],
+    "passed": true
+  },
+  "invariants": {
+    "layer_1_method": "plain EMD",
+    "layer_2_method": "plain EMD",
+    "admissibility": "f_am < f_carrier",
+    "max_reconstruction_error": 8.881784197001252e-16,
+    "max_rejected_fraction": 0.002647575285015422,
+    "passed": true
+  },
+  "all_passed": true
+}
