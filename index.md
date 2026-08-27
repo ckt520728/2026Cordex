@@ -52,3 +52,9 @@ updated: '2026-05-19'
 - [Hermes Agent Blog author hallucination RCA](outputs/2026-06-04-hermes-blog-rca/2026-06-04-codex-hallucination-rca.md) - 部落格改寫、PDF 插圖、作者 metadata 幻覺與修正流程。
 - [personal-site-blog-publisher skill](skills/personal-site-blog-publisher/SKILL.md) - 本地 DOCX/PDF/HTML slides 轉個人網站 Blog 的可重用流程。
 - [memory update note](docs/memory-updates/2026-06-04-memory-update-blog-author-hallucination.md) - 供 Codex memory 吸收的錯誤與規則更新。
+
+## 2026-06-23 Scholar Research Review
+
+- [Ravindra L. Mehta AKI 研究與踩坑紀錄](outputs/2026-06-23-scholar-research-review/wrap-up.md) — Scholar／PubMed corpus、作者消歧、研究時間軸、歸因稽核與 reviewer gate。
+- [scholar-research-review portable skill](scholar-research-review-skill.md) — 可攜式單檔技能。
+- [scholar-research-review canonical skill](skills/scholar-research-review/SKILL.md) — Codex 標準技能結構。
