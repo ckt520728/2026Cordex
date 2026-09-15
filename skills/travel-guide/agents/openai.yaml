@@ -1,0 +1,4 @@
+interface:
+  display_name: "Travel Guide"
+  short_description: "Research, write, and verify evidence-based travel guides"
+  default_prompt: "Use $travel-guide to turn my itinerary into a sourced, portable travel guide."
