@@ -1,0 +1,4 @@
+interface:
+  display_name: "Daily Decision Brief"
+  short_description: "Build auditable daily decisions from Gmail and Telegram"
+  default_prompt: "Use $daily-decision-brief to prepare today's draft or confirmed decision brief."
