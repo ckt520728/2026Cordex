@@ -1,0 +1,4 @@
+*.md binary
+*.json binary
+**/*.md binary
+**/*.json binary

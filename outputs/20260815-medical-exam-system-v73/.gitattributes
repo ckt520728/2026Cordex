@@ -1,0 +1,7 @@
+.gitattributes binary
+*.md binary
+**/*.md binary
+*.gs binary
+*.html binary
+*.js binary
+*.json binary

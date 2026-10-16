@@ -1,0 +1,24 @@
+{
+  "template": "quiz",
+  "title": "高二解析幾何｜圖形進階挑戰",
+  "items": [
+    {
+      "question": "如圖，長方體 ABCD-EFGH 中，AB=8、AD=20、AE=12。P、R、S 分別為 AD、FG、GH 的中點；Q 在 BF 上且 QF=2BQ。四面體 PQRS 的體積為何？（改寫自武陵高中 113-2 高二數學 A）",
+      "image": "assets/q1-cuboid-pqrs.png",
+      "answers": ["80/3", "40/3", "80", "160/3"],
+      "correct": 0
+    },
+    {
+      "question": "如圖，五個圓依圖示相切；圓心 A、B、C、D、E 形成周長 20 的五邊形，且 AB=AE、BC=DE。五個圓面積總和的最小值為何？（改寫自武陵高中 113-2 高二數學 A）",
+      "image": "assets/q2-tangent-circles.png",
+      "answers": ["10π", "20π", "25π", "40π"],
+      "correct": 1
+    },
+    {
+      "question": "如圖，ABCD-EFGH 為長方體，K 在 EG 上且 HK⊥EG。利用空間中的垂直關係與三垂線定理，可推出下列哪個結論？（改寫自武陵高中 113-2 高二數學 A）",
+      "image": "assets/q3-three-perpendiculars.png",
+      "answers": ["DK⊥EG", "DK∥EG", "DK⊥HK", "DK∥平面 EFGH"],
+      "correct": 0
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Email 回覆排序"
+  short_description: "依延誤成本排序郵件並草擬直接溫暖、可非同步解決的回覆"
+  default_prompt: "Use $email-reply-prioritizer to rank these emails and draft concise replies in my voice."

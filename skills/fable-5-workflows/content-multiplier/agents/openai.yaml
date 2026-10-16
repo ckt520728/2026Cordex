@@ -1,0 +1,4 @@
+interface:
+  display_name: "內容倍增器"
+  short_description: "將單篇長內容轉為多平台原生素材，保留作者聲音、觀點與立場"
+  default_prompt: "Use $content-multiplier to repurpose this long-form piece into platform-native content."

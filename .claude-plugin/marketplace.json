@@ -1,0 +1,16 @@
+{
+  "name": "cordex",
+  "owner": {
+    "name": "ckt520728"
+  },
+  "description": "Personal marketplace of evidence-bound research, writing, and publication workflows for Claude Code.",
+  "plugins": [
+    {
+      "name": "research-to-publication",
+      "source": "./plugins/research-to-publication",
+      "description": "Evidence-bound workflow from local PDFs and NotebookLM synthesis to academic paper, public blog, and verified publication.",
+      "version": "0.1.1",
+      "category": "research"
+    }
+  ]
+}

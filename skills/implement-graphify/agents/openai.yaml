@@ -1,0 +1,4 @@
+interface:
+  display_name: "導入 Graphify"
+  short_description: "安全導入並維護 Graphify codebase knowledge graph"
+  default_prompt: "使用 $implement-graphify 在目前 repository 建立安全、可驗證的 Graphify 導入流程。"

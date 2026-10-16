@@ -1,0 +1,4 @@
+interface:
+  display_name: "會議幕僚整理"
+  short_description: "將原始會議紀錄轉為摘要、行動、決策、風險與待釐清事項"
+  default_prompt: "Use $meeting-notes-chief-of-staff to turn these raw meeting notes into an accountable action brief."

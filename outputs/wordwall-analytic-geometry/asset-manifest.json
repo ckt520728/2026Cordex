@@ -1,0 +1,26 @@
+{
+  "asset_level": "screenshot",
+  "generation_method": "existing-or-screenshot",
+  "source_files": [
+    "wlsh-1132-math-a-midterm-1.pdf"
+  ],
+  "final_assets": [
+    {
+      "role": "composite-question",
+      "path": "assets/q1-cuboid-pqrs.png"
+    },
+    {
+      "role": "composite-question",
+      "path": "assets/q2-tangent-circles.png"
+    },
+    {
+      "role": "composite-question",
+      "path": "assets/q3-three-perpendiculars.png"
+    }
+  ],
+  "capture_finalized": true,
+  "math_verified": true,
+  "answer_leak_checked": true,
+  "mobile_checked": true
+}
+

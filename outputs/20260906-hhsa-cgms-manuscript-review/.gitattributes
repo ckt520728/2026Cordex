@@ -1,0 +1,4 @@
+*.md binary
+*.html binary
+manifest.sha256 binary
+.gitattributes binary

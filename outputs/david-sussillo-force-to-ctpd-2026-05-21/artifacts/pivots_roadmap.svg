@@ -1,0 +1,74 @@
+<svg width="100%" viewBox="0 0 720 770" role="img" xmlns="http://www.w3.org/2000/svg">
+<title style="font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;">概念演化路線圖：從 FORCE Algorithm 到 Computation through Population Dynamics 的四個轉折</title>
+<desc style="font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;">縱向時間軸，呈現 FORCE 訓練演算法如何經四個本體論轉折演變為神經群體動力學運算框架</desc>
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- ── HEADER ── -->
+<text x="360" y="30" text-anchor="middle" style="fill:rgb(250, 249, 245);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:600;">FORCE Algorithm → Computation through Population Dynamics</text>
+<text x="360" y="50" text-anchor="middle" style="fill:rgb(194, 192, 182);font-family:&quot;Anthropic Sans&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, sans-serif;font-size:12px;font-weight:400;">四個本體論轉折：從「能訓練的工具」到「系統神經科學框架」</text>
+
+<!-- ── START: FORCE 2009 (green / algorithm) ── -->
+<g onclick="sendPrompt('請講透 Sussillo &amp; Abbott 2009 FORCE learning 的核心數學：RLS 更新式、P 矩陣（相關矩陣的逆）、以及為何誤差從第一步就很小')" style="font-family:&quot;Anthropic Sans&quot;, sans-serif;">
+  <rect x="60" y="70" width="600" height="58" rx="8" style="fill:rgb(8, 80, 65);stroke:rgb(93, 202, 165);stroke-width:0.5px;"/>
+  <text x="360" y="94" text-anchor="middle" style="fill:rgb(159, 225, 203);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:14px;font-weight:600;">起點 ｜ FORCE Algorithm （Sussillo &amp; Abbott, 2009, Neuron）</text>
+  <text x="360" y="114" text-anchor="middle" style="fill:rgb(93, 202, 165);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:12px;font-weight:400;">一個能訓練混沌 RNN 自主產生目標輸出的「工具」 · RLS + P 矩陣，誤差全程維持極小</text>
+</g>
+<line x1="360" y1="128" x2="360" y2="150" marker-end="url(#arrow)" style="stroke:rgb(156, 154, 146);stroke-width:1.5px;"/>
+
+<!-- ── PIVOT 1 (green) ── -->
+<g onclick="sendPrompt('解說 FORCE 如何把混沌從 bug 變成 feature：相較 echo-state network 刻意讓網路靜止，FORCE 為何保留混沌並用強而快的突觸修改主動壓制它')" style="font-family:&quot;Anthropic Sans&quot;, sans-serif;">
+  <rect x="60" y="150" width="600" height="72" rx="8" style="fill:rgb(8, 80, 65);stroke:rgb(93, 202, 165);stroke-width:0.5px;"/>
+  <text x="360" y="172" text-anchor="middle" style="fill:rgb(159, 225, 203);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:13px;font-weight:600;">轉折 1 ｜ 混沌：從 bug 到 feature</text>
+  <text x="360" y="192" text-anchor="middle" style="fill:rgb(250, 249, 245);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:12px;font-weight:400;">刻意讓網路靜止（echo-state）　→　保留混沌、訓練中主動壓制</text>
+  <text x="360" y="211" text-anchor="middle" style="fill:rgb(93, 202, 165);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">機制內生於 FORCE (2009)：feedback ≈ f(t) 誘導 chaotic → nonchaotic transition</text>
+</g>
+<line x1="360" y1="222" x2="360" y2="244" marker-end="url(#arrow)" style="stroke:rgb(156, 154, 146);stroke-width:1.5px;"/>
+
+<!-- ── PIVOT 2 (purple / KEY) ── -->
+<g onclick="sendPrompt('解說 Sussillo &amp; Barak 2013 Opening the Black Box：如何把訓練好的 RNN 視為非線性動力系統 NLDS，用 fixed points / slow points + 線性化來逆向工程網路的運算機制')" style="font-family:&quot;Anthropic Sans&quot;, sans-serif;">
+  <rect x="60" y="244" width="600" height="88" rx="8" style="fill:rgb(60, 52, 137);stroke:rgb(175, 169, 236);stroke-width:1.5px;"/>
+  <text x="360" y="266" text-anchor="middle" style="fill:rgb(206, 203, 246);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:13px;font-weight:600;">轉折 2 ｜ 本體論翻轉（核心樞紐）★</text>
+  <text x="360" y="287" text-anchor="middle" style="fill:rgb(250, 249, 245);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:12px;font-weight:500;">黑盒工具　→　可逆向工程的非線性動力系統 (NLDS)</text>
+  <text x="360" y="306" text-anchor="middle" style="fill:rgb(175, 169, 236);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">監督式訓練只規定「做什麼」、不規定「怎麼做」 → 怎麼做變成可研究的科學問題</text>
+  <text x="360" y="324" text-anchor="middle" style="fill:rgb(175, 169, 236);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">fixed points / slow points + 線性化　·　Sussillo &amp; Barak 2013, Neural Computation</text>
+</g>
+<line x1="360" y1="332" x2="360" y2="354" marker-end="url(#arrow)" style="stroke:rgb(156, 154, 146);stroke-width:1.5px;"/>
+
+<!-- ── PIVOT 3 (brown / application) ── -->
+<g onclick="sendPrompt('解說動力系統語言（state space、trajectory、flow field、attractor）如何從 RNN 反向套回真實大腦的神經群體資料，參考 Barak/Sussillo/Romo 2013 與 Sussillo 2014 Current Opinion')" style="font-family:&quot;Anthropic Sans&quot;, sans-serif;">
+  <rect x="60" y="354" width="600" height="72" rx="8" style="fill:rgb(113, 43, 19);stroke:rgb(240, 153, 123);stroke-width:0.5px;"/>
+  <text x="360" y="376" text-anchor="middle" style="fill:rgb(245, 196, 179);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:13px;font-weight:600;">轉折 3 ｜ 從分析模型到分析大腦</text>
+  <text x="360" y="396" text-anchor="middle" style="fill:rgb(250, 249, 245);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:12px;font-weight:400;">RNN 的動力系統語言　→　反向套回真實神經群體（顛覆 single-neuron tuning）</text>
+  <text x="360" y="415" text-anchor="middle" style="fill:rgb(240, 153, 123);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">Barak/Sussillo/Romo 2013（延遲辨別）· Sussillo 2014「circuits as dynamical systems」</text>
+</g>
+<line x1="360" y1="426" x2="360" y2="448" marker-end="url(#arrow)" style="stroke:rgb(156, 154, 146);stroke-width:1.5px;"/>
+
+<!-- ── PIVOT 4 (purple / conceptual) ── -->
+<g onclick="sendPrompt('解說 Driscoll, Golub &amp; Sussillo 2018 Computation through Cortical Dynamics：input 如何作為動力系統的重構者，initial condition x0 與 input u(t) 如何共同指定一個運算')" style="font-family:&quot;Anthropic Sans&quot;, sans-serif;">
+  <rect x="60" y="448" width="600" height="72" rx="8" style="fill:rgb(60, 52, 137);stroke:rgb(175, 169, 236);stroke-width:0.5px;"/>
+  <text x="360" y="470" text-anchor="middle" style="fill:rgb(206, 203, 246);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:13px;font-weight:600;">轉折 4 ｜ input 成為動力系統的「重構者」</text>
+  <text x="360" y="490" text-anchor="middle" style="fill:rgb(250, 249, 245);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:12px;font-weight:400;">輸入只是被加入的訊號　→　x₀ 與 u(t) 共同指定運算（重構電路動力）</text>
+  <text x="360" y="509" text-anchor="middle" style="fill:rgb(175, 169, 236);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">reservoir「丟石頭進池塘」→ 為特定運算量身打造的動力系統 · Driscoll/Golub/Sussillo 2018</text>
+</g>
+<line x1="360" y1="520" x2="360" y2="542" marker-end="url(#arrow)" style="stroke:rgb(156, 154, 146);stroke-width:1.5px;"/>
+
+<!-- ── END: CTPD 2020 (gold / framework) ── -->
+<g onclick="sendPrompt('解說 Vyas, Golub, Sussillo &amp; Shenoy 2020 Annual Review「Computation Through Neural Population Dynamics」框架：數學基礎、state space、以及在 motor control / timing / decision / working memory 的實證')" style="font-family:&quot;Anthropic Sans&quot;, sans-serif;">
+  <rect x="60" y="542" width="600" height="66" rx="8" style="fill:rgb(99, 56, 6);stroke:rgb(239, 159, 39);stroke-width:1.5px;"/>
+  <text x="360" y="566" text-anchor="middle" style="fill:rgb(250, 199, 117);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:14px;font-weight:600;">終點 ｜ Computation Through Neural Population Dynamics （Vyas et al., 2020）</text>
+  <text x="360" y="586" text-anchor="middle" style="fill:rgb(239, 159, 39);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:12px;font-weight:400;">系統神經科學主流框架 · motor control / timing / decision-making / working memory</text>
+</g>
+
+<!-- ── EMERGENCE undercurrent (dashed) ── -->
+<rect x="60" y="632" width="600" height="74" rx="12" style="fill:none;stroke:rgba(222, 220, 209, 0.3);stroke-width:0.5px;stroke-dasharray:6px, 3px;"/>
+<text x="360" y="654" text-anchor="middle" style="fill:rgb(250, 249, 245);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:13px;font-weight:600;">貫穿全程的哲學底色：Emergence</text>
+<text x="360" y="674" text-anchor="middle" style="fill:rgb(194, 192, 182);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">Conway's Game of Life：簡單規則 → 複雜湧現（Sussillo 2026 Neuron Q&amp;A 自述為終生母題）</text>
+<text x="360" y="693" text-anchor="middle" style="fill:rgb(194, 192, 182);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">運算從大量簡單單元的集體動力中湧現，而非定位於單一元件 — 即 population dynamics 的信念</text>
+
+<!-- ── footer ── -->
+<text x="360" y="730" text-anchor="middle" style="fill:rgb(194, 192, 182);font-family:&quot;Anthropic Sans&quot;, sans-serif;font-size:11px;font-weight:400;">← 點擊任一方塊可深入探索　｜　★ = 整條演化的核心樞紐</text>
+</svg>
