@@ -14,6 +14,10 @@ This repository is prepared as a neutral starting point. Add the project goal,
 chosen stack, setup steps, and run commands here as the implementation takes
 shape.
 
+## Self-improving second brain
+
+- [自我改進第二大腦使用手冊](docs/second-brain-user-manual.md) — daily and weekly operating loop, experiments, evidence, decisions, and failure reviews.
+
 ## Structure
 
 - `docs/` - project notes, decisions, and planning documents
