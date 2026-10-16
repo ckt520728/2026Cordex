@@ -1,0 +1,3 @@
+display_name: Neurodynamic ODE Cabin
+short_description: Build ODE learning cabins.
+default_prompt: Create an interactive differential-equation learning cabin from my source material.

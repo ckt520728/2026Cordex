@@ -1,0 +1,10 @@
+/goal generate a daily algorithms to manage and help me make decision for tasks.
+/inti first do project intilization, create AGENTS.md, and handoffs.md with grill-with-docs and finding_unknown skill
+
+Working foldera; C:\Users\YangminRoom1\2026 Daily algorithm
+
+Reference: psersonal-daily-os-skill.md:  "C:\Users\YangminRoom1\2026 Daily algorithm\personal-daily-os-skill.md"
+https://github.com/ckt520728/claude-skills/tree/master/Thariq_finding_unknown
+"C:\Users\YangminRoom1\2026 Daily algorithm\生活演算法.md"
+"C:\Users\YangminRoom1\2026 Daily algorithm\演算法之美.md"
+"C:\Users\YangminRoom1\.claude\skills\grill-with-docs"

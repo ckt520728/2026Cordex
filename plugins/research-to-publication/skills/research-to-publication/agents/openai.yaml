@@ -1,0 +1,4 @@
+interface:
+  display_name: "Research to Publication"
+  short_description: "Orchestrate an evidence-bound research-to-publication workflow."
+  default_prompt: "Use $research-to-publication to turn this research corpus into an academic paper and public blog."

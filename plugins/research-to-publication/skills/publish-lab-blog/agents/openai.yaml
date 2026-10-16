@@ -1,0 +1,4 @@
+interface:
+  display_name: "Publish Lab Blog"
+  short_description: "Publish an approved interactive article to the lab homepage."
+  default_prompt: "Use $publish-lab-blog to publish the approved article and verify deployment."
